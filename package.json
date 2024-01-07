@@ -1,0 +1,89 @@
+{
+  "name": "nestjs-realworld-example-app",
+  "version": "0.2",
+  "main": "index.js",
+  "repository": "https://github.com/mutoe/nestjs-realworld-example-app",
+  "author": "mutoe <mutoe@foxmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "build:docker": "npm run build && docker build -t mutoe/$npm_package_name:latest . && docker push mutoe/$npm_package_name:latest",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint . --fix",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json --runInBand",
+    "test:api": "bash api-test/run-api-test.sh"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.4.0",
+    "@nestjs/core": "^9.4.0",
+    "@nestjs/jwt": "^10.0.3",
+    "@nestjs/passport": "^9.0.3",
+    "@nestjs/platform-express": "^9.4.0",
+    "@nestjs/swagger": "^6.3.0",
+    "@nestjs/typeorm": "^9.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "lodash": "^4.17.21",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.10.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^5.0.0",
+    "rxjs": "^7.8.1",
+    "swagger-ui-express": "^4.6.2",
+    "typeorm": "^0.2"
+  },
+  "devDependencies": {
+    "@mutoe/eslint-config-preset-jest": "^3.4.1",
+    "@mutoe/eslint-config-preset-ts": "^3.4.1",
+    "@nestjs/cli": "^9.4.2",
+    "@nestjs/schematics": "^9.1.0",
+    "@nestjs/testing": "^9.4.0",
+    "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^18",
+    "@types/passport-jwt": "^3.0.8",
+    "@types/passport-local": "^1.0.35",
+    "@types/supertest": "^2.0.12",
+    "eslint": "^8.39.0",
+    "jest": "^27.5.1",
+    "newman": "^5.3.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^27.1.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^4.9.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@mutoe/eslint-config-preset-ts"
+    ]
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "modulePaths": [
+      "<rootDir>/"
+    ],
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "<rootDir>/../coverage",
+    "testEnvironment": "node"
+  }
+}
